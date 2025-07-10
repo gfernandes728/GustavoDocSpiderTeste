@@ -46,16 +46,16 @@ Edite o arquivo `GustavoDocSpiderTeste/appsettings.json` com sua string de conex
 
 ### 4. Aplicar as migrations
 
-Para aplicar a migration existente:
-
-```bash
-dotnet ef database update --project GustavoDocSpiderTeste.Data --startup-project GustavoDocSpiderTeste
-```
-
 Para criar uma nova migration inicial (se necessário):
 
 ```bash
 dotnet ef migrations add InitialCreate --project GustavoDocSpiderTeste.Data --startup-project GustavoDocSpiderTeste
+```
+
+Para aplicar a migration existente:
+
+```bash
+dotnet ef database update --project GustavoDocSpiderTeste.Data --startup-project GustavoDocSpiderTeste
 ```
 
 > 💡 Certifique-se de que o pacote `Microsoft.EntityFrameworkCore.Tools` esteja instalado.
