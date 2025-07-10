@@ -1,5 +1,12 @@
-﻿# Estrutura do Projeto
+﻿# GustavoDocSpiderTeste
 
+Projeto ASP.NET Core MVC para gerenciamento de documentos com upload, edição e visualização. Desenvolvido como parte de um teste técnico.
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
 GustavoDocSpiderTeste/
 ├── GustavoDocSpiderTeste/              # Projeto principal MVC
 ├── GustavoDocSpiderTeste.Business/     # Regras de negócio
@@ -8,59 +15,78 @@ GustavoDocSpiderTeste/
 ├── GustavoDocSpiderTeste.ViewModels/   # ViewModels
 ├── GustavoDocSpiderTeste.UnitTests/    # Testes automatizados
 └── appsettings.json                    # Configurações
+```
 
-## Como rodar o projeto localmente
+---
 
-## 1. Clonar o repositório
+## 🚀 Como rodar o projeto localmente
 
-git clone <url-do-repositorio>
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/gfernandes728/GustavoDocSpiderTeste.git
 cd GustavoDocSpiderTeste
+```
 
-## 2. Restaurar pacotes
+### 2. Restaurar os pacotes
 
-Abra o terminal/prompt de comando na pasta da solução e execute:
-
+```bash
 dotnet restore
+```
 
-## 3. Configurar o banco de dados
+### 3. Configurar o banco de dados
 
-Abra o arquivo:
+Edite o arquivo `GustavoDocSpiderTeste/appsettings.json` com sua string de conexão:
 
-GustavoDocSpiderTeste/appsettings.json
-
-E edite a DefaultConnection com sua string de conexão local, por exemplo:
-
+```json
 "ConnectionStrings": {
   "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=DocSpiderDb;Trusted_Connection=True;"
 }
+```
 
-## 4. Aplicar as Migrations
+### 4. Aplicar as migrations
 
-Crie e/ou aplique as migrations com os comandos:
+Para aplicar a migration existente:
 
+```bash
 dotnet ef database update --project GustavoDocSpiderTeste.Data --startup-project GustavoDocSpiderTeste
+```
 
-Caso precise criar a migration inicialmente:
+Para criar uma nova migration inicial (se necessário):
 
+```bash
 dotnet ef migrations add InitialCreate --project GustavoDocSpiderTeste.Data --startup-project GustavoDocSpiderTeste
+```
 
-Obs.: Certifique-se de que o pacote Microsoft.EntityFrameworkCore.Tools esteja referenciado.
+> 💡 Certifique-se de que o pacote `Microsoft.EntityFrameworkCore.Tools` esteja instalado.
 
-## 5. Rodar o projeto
+### 5. Rodar o projeto
 
+```bash
 dotnet run --project GustavoDocSpiderTeste
+```
 
-Acesse: https://localhost:44342
+Acesse no navegador: [https://localhost:44342](https://localhost:44342)
 
-## Rodar os Testes
+---
 
+## ✅ Rodar os Testes
+
+```bash
 dotnet test GustavoDocSpiderTeste.UnitTests
+```
 
-## Publicação
+---
 
+## 📦 Publicação
+
+```bash
 dotnet publish -c Release -o ./publish
+```
 
-## Autor
+---
 
-Gustavo Fernandes
-guga.728@gmail.com
+## 👤 Autor
+
+**Gustavo Fernandes**  
+📧 guga.728@gmail.com  

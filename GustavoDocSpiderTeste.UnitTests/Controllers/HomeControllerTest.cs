@@ -1,6 +1,7 @@
 ﻿using AutoBogus;
+using Bogus.Extensions;
 using GustavoDocSpiderTeste.Controllers;
-using Microsoft.AspNetCore.Http;
+using GustavoDocSpiderTeste.UnitTests.Mock;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Xunit;
@@ -11,11 +12,15 @@ namespace GustavoDocSpiderTeste.UnitTests.Controllers
     {
         private readonly IAutoFaker _autoFaker;
         private readonly HomeController _homeController;
+        private readonly ControllerContextMock _controllerContext;
+        private readonly ActivityMock _activity;
 
         public HomeControllerTest()
         {
             _autoFaker = AutoFaker.Create();
             _homeController = new HomeController();
+            _controllerContext = new ControllerContextMock();
+            _activity = new ActivityMock();
         }
 
         [Fact]
@@ -30,31 +35,28 @@ namespace GustavoDocSpiderTeste.UnitTests.Controllers
 
         [Fact]
         public void Error_Test()
-            => Assert.NotNull(_homeController.Error());
+            => Assert.NotNull(Error());
 
         [Fact]
         public void Error_ActivityCurrent_Test()
         {
-            var activity = new Activity(_autoFaker.Generate<string>());
-            activity.Start();
-            Activity.Current = activity;
-
-            Assert.NotNull(_homeController.Error());
+            Activity.Current = _activity.Create();
+            Assert.NotNull(Error());
         }
 
         [Fact]
         public void Error_HttpContext_Test()
         {
-            _homeController.ControllerContext = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext()
-                {
-                    TraceIdentifier = "trace-xyz-123"
-                }
-            };
-
-            Assert.NotNull(_homeController.Error());
+            _homeController.ControllerContext = _controllerContext.Create();
+            Assert.NotNull(Error());
         }
+
+        #endregion
+
+        #region - Private methods -
+
+        private IActionResult Error()
+            => _homeController.Error();
 
         #endregion
     }
