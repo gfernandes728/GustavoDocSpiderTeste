@@ -1,0 +1,26 @@
+﻿@model GustavoDocSpiderTeste.ViewModels.ViewModels.DocumentViewModel
+
+@{
+    ViewData["Title"] = "Excluir Documento";
+}
+
+<h2 class="mb-4 text-danger">Tem certeza que deseja excluir este documento?</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Título</dt>
+    <dd class="col-sm-9">@Model.Title</dd>
+
+    <dt class="col-sm-3">Descrição</dt>
+    <dd class="col-sm-9">@Model.Description</dd>
+
+    <dt class="col-sm-3">Nome do Arquivo</dt>
+    <dd class="col-sm-9">@Model.FileName</dd>
+</dl>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash-alt"></i> Confirmar Exclusão
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
