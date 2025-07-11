@@ -7,20 +7,25 @@
 <h2 class="mb-4 text-danger">Tem certeza que deseja excluir este documento?</h2>
 
 <dl class="row">
-    <dt class="col-sm-3">Título</dt>
-    <dd class="col-sm-9">@Model.Title</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Título</dt>
+    <dd class="col-sm-8 col-md-9">@Model.Title</dd>
 
-    <dt class="col-sm-3">Descrição</dt>
-    <dd class="col-sm-9">@Model.Description</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Descrição</dt>
+    <dd class="col-sm-8 col-md-9">@Model.Description</dd>
 
-    <dt class="col-sm-3">Nome do Arquivo</dt>
-    <dd class="col-sm-9">@Model.FileName</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Nome do Arquivo</dt>
+    <dd class="col-sm-8 col-md-9">@Model.FileName</dd>
 </dl>
 
 <form asp-action="DeleteConfirmed">
     <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">
-        <i class="fas fa-trash-alt"></i> Confirmar Exclusão
-    </button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+    <div class="d-flex flex-column flex-sm-row flex-wrap gap-2 mt-3">
+        <button type="submit" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2">
+            <i class="fas fa-trash-alt"></i> Confirmar Exclusão
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancelar
+        </a>
+    </div>
 </form>

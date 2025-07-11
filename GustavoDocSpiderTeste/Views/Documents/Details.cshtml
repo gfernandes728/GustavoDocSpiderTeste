@@ -4,26 +4,28 @@
     ViewData["Title"] = "Detalhes do Documento";
 }
 
-<h2 class="mb-4">Detalhes do Documento</h2>
-
 <dl class="row">
-    <dt class="col-sm-3">Título</dt>
-    <dd class="col-sm-9">@Model.Title</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Título</dt>
+    <dd class="col-sm-8 col-md-9">@Model.Title</dd>
 
-    <dt class="col-sm-3">Descrição</dt>
-    <dd class="col-sm-9">@Model.Description</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Descrição</dt>
+    <dd class="col-sm-8 col-md-9">@Model.Description</dd>
 
-    <dt class="col-sm-3">Nome do Arquivo</dt>
-    <dd class="col-sm-9">@Model.FileName</dd>
+    <dt class="col-sm-4 col-md-3 font-weight-bold">Nome do Arquivo</dt>
+    <dd class="col-sm-8 col-md-9">@Model.FileName</dd>
 </dl>
 
-<a asp-action="Download" asp-route-id="@Model.Id" class="btn btn-outline-primary">
-    <i class="fas fa-download"></i> Baixar Arquivo
-</a>
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
-    <i class="fas fa-edit"></i> Editar
-</a>
-<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
-    <i class="fas fa-trash-alt"></i> Excluir
-</a>
-<a asp-action="Index" class="btn btn-secondary">Voltar</a>
+<div class="d-flex flex-column flex-sm-row flex-wrap gap-2 mt-3">
+    <a asp-action="Download" asp-route-id="@Model.Id" class="btn btn-outline-primary mb-2 mb-sm-0 mr-sm-2">
+        <i class="fas fa-download"></i> Baixar Arquivo
+    </a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 mb-sm-0 mr-sm-2">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2">
+        <i class="fas fa-trash-alt"></i> Excluir
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        Voltar
+    </a>
+</div>

@@ -6,67 +6,73 @@
     string orderBy = ViewBag.OrderBy as string ?? "CreatedAt desc";
 }
 
-<h2 class="mb-4">Meus Documentos</h2>
-
-<div class="mb-3 d-flex justify-content-between align-items-center">
-    <a asp-action="Create" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Novo Documento
-    </a>
-
-    <form asp-action="Index" method="get" class="form-inline">
-        <input type="text" name="search" class="form-control mr-2" placeholder="Buscar por título..." />
-        <button type="submit" class="btn btn-outline-secondary">Buscar</button>
-    </form>
+<div class="mb-3 row">
+    <div class="col-md-6 mb-2 mb-md-0">
+        <a asp-action="Create" class="btn btn-primary w-100 w-md-auto">
+            <i class="fas fa-plus"></i> Novo Documento
+        </a>
+    </div>
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline d-flex justify-content-end">
+            <input type="text" name="search" class="form-control mr-2 flex-grow-1" placeholder="Buscar por título..." />
+            <button type="submit" class="btn btn-outline-secondary">Buscar</button>
+        </form>
+    </div>
 </div>
 
-<table class="table table-bordered table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="Title @(orderBy == "Title asc" ? "desc" : "asc")">
-                    Título
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="Description @(orderBy == "Description asc" ? "desc" : "asc")">
-                    Descrição
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="FileName @(orderBy == "FileName asc" ? "desc" : "asc")">
-                    Nome do Arquivo
-                </a>
-            </th>
-            <th>
-                Ações
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items)
-        {
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
             <tr>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td>@item.FileName</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">
-                        <i class="fas fa-eye"></i> Detalhes
+                <th>
+                    <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="Title @(orderBy == "Title asc" ? "desc" : "asc")">
+                        Título
                     </a>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
-                        <i class="fas fa-edit"></i> Editar
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="Description @(orderBy == "Description asc" ? "desc" : "asc")">
+                        Descrição
                     </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i> Excluir
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-search="@search" asp-route-orderBy="FileName @(orderBy == "FileName asc" ? "desc" : "asc")">
+                        Nome do Arquivo
                     </a>
-                    <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">
-                        <i class="fas fa-download"></i> Download
-                    </a>
-                </td>
+                </th>
+                <th>
+                    Ações
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.FileName</td>
+                    <td>
+                        <div class="btn-group btn-group-sm d-flex flex-wrap" role="group">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info mb-1 mr-1">
+                                <i class="fas fa-eye"></i> Detalhes
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning mb-1 mr-1">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mb-1 mr-1">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a>
+                            <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-secondary mb-1">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @if (Model.TotalPages > 1)
 {
