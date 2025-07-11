@@ -15,7 +15,7 @@
 </head>
 <body>
     <header class="bg-primary text-white d-flex align-items-center p-2" style="background: linear-gradient(90deg, #003366, #0055a5);">
-        <button class="btn btn-link text-white" onclick="toggleSidebar()">
+        <button class="btn btn-link text-white" onclick="layout.toggleSidebar()">
             <i class="fas fa-bars fa-lg"></i>
         </button>
         <img src="~/img/logo.png" alt="Logo" class="ml-2 mr-2" />
@@ -76,40 +76,14 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/layout.js"></script>
     <script>
-        function toggleSidebar() {
-            const sb = document.getElementById("sidebar");
-
-            const el = document.getElementsByClassName('title-menu');
-            const total = el.length;
-
-            for (let i = 0; i < total; i++) {
-                if (el[i].classList.contains('d-none')) {
-                    el[i].classList.remove('d-none'); 
-                } else {
-                    el[i].classList.add('d-none');
-                }
-            }
-
-            if (sb.classList.contains('side-bar-close')) {
-                sb.classList.remove('side-bar-close');
-            } else {
-                sb.classList.add('side-bar-close');
-            }
-
-            sb.classList.toggle('mobile-visible');
-
-            const overlay = document.querySelector('.overlay');
-            overlay.classList.toggle('show');
-        }
-
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('mobile-visible');
-            document.querySelector('.overlay').classList.remove('show');
-        }
-    </script>
+        $(document).ready(function() {
+            layout.init();
+        });
+     </script>
     @RenderSection("Scripts", required: false)
 
-    <div class="overlay" onclick="closeSidebar()"></div>
+    <div class="overlay" onclick="layout.closeSidebar()"></div>
 </body>
 </html>
